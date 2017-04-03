@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#333333</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="white">#fff</color>
+
+    <!--Blue-->
+    <color name="background_blue">#0a87dc</color>
+    <color name="toolbar_blue">#2196f3</color>
+    <color name="button_blue">#42a5e9</color>
+    <color name="button_blue_facebook">#3b5998</color>
+    <color name="accentColor">#8dcefc</color>
+
+    <!-- Gray -->
+    <color name="gray_drawer">#939393</color>
+    <color name="gray_divider">#c6c6c6</color>
+    <color name="gray_text_profile">#565656</color>
+    <color name="gray_text_version">#a3565656</color>
+    <color name="textLigth">#66ffffff</color>
+
+    <!-- Red -->
+    <color name="button_red">#ca0110</color>
+    <color name="button_red_pressed">#dc2b38</color>
+
+    <!-- Green -->
+    <color name="button_green">#00ba00</color>
+    <color name="button_green_pressed">#04d604</color>
+</resources>
