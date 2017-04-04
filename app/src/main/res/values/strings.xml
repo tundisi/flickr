@@ -15,4 +15,8 @@
     <string name="dowloaded">Dowloaded</string>
     <string name="printed">Printed</string>
     <string name="taken_by">Taken by</string>
+    <string name="profile">Profile</string>
+    <string name="first_date_taken">First picture taken</string>
+    <string name="date_example">2005-07-25 09:24:35</string>
+    <string name="count_pictures">Count pictures</string>
 </resources>

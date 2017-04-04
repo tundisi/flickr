@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        layout="@layout/toolbar" />
+
+    <android.support.v7.widget.CardView
+        android:layout_marginTop="@dimen/spacing_5"
+        card_view:cardUseCompatPadding="true"
+        card_view:cardElevation="@dimen/cardview_default_elevation"
+        card_view:cardCornerRadius="@dimen/cardview_default_radius"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:padding="@dimen/spacing_10"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/ivPhotoProfile"
+                android:layout_marginTop="@dimen/spacing_10"
+                android:src="@drawable/ic_account_circle"
+                android:layout_width="@dimen/size_photo_profile"
+                android:layout_height="@dimen/size_photo_profile" />
+
+            <TextView
+                android:id="@+id/tvNameProfile"
+                style="@style/RobotoTextTitle"
+                android:textColor="@color/colorPrimaryDark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:gravity="center_horizontal"
+                android:id="@+id/tvDescription"
+                style="@style/RobotoTextSubTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.CardView
+            android:layout_weight="1"
+            android:layout_marginTop="@dimen/spacing_5"
+            card_view:cardUseCompatPadding="true"
+            card_view:cardElevation="@dimen/cardview_default_elevation"
+            card_view:cardCornerRadius="@dimen/cardview_default_radius"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/RobotoTextBold"
+                    android:text="@string/first_date_taken"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tvDateFirstPicture"
+                    android:layout_marginTop="@dimen/spacing_5"
+                    style="@style/RobotoTextRegular"
+                    android:text="@string/date_example"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_weight="1"
+            android:layout_marginTop="@dimen/spacing_5"
+            card_view:cardUseCompatPadding="true"
+            card_view:cardElevation="@dimen/cardview_default_elevation"
+            card_view:cardCornerRadius="@dimen/cardview_default_radius"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/RobotoTextBold"
+                    android:text="@string/count_pictures"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tvCountPicture"
+                    android:layout_marginTop="@dimen/spacing_5"
+                    style="@style/RobotoTextRegular"
+                    android:text="0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvPhotos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+</LinearLayout>

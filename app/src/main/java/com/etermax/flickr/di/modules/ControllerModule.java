@@ -1,6 +1,8 @@
 package com.etermax.flickr.di.modules;
 
+import com.etermax.flickr.api.controllers.PersonController;
 import com.etermax.flickr.api.controllers.PhotosController;
+import com.etermax.flickr.api.services.PersonApi;
 import com.etermax.flickr.api.services.PhotosApi;
 
 import javax.inject.Singleton;
@@ -21,4 +23,10 @@ public class ControllerModule {
         return new PhotosController(photosApi);
     }
 
+
+    @Provides
+    @Singleton
+    PersonController personController(PersonApi personApi) {
+        return new PersonController(personApi);
+    }
 }

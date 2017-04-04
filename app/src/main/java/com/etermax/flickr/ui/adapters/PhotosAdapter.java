@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.etermax.flickr.R;
 import com.etermax.flickr.data.models.Photo;
-import com.etermax.flickr.ui.modules.main.MainFragmentView;
 
 import java.util.ArrayList;
 
@@ -24,7 +23,7 @@ import butterknife.ButterKnife;
 public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.ViewHolder> {
     private final Context context;
     private ArrayList<Photo> photos;
-    MainFragmentView mainFragmentViewListener;
+    PhotosAdapterView photosAdapterViewListener;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.ivPhoto)
@@ -36,10 +35,10 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.ViewHolder
         }
     }
 
-    public PhotosAdapter(ArrayList<Photo> photos, Context context, MainFragmentView mainFragmentViewListener) {
+    public PhotosAdapter(ArrayList<Photo> photos, Context context, PhotosAdapterView photosAdapterViewListener) {
         this.photos = photos;
         this.context = context;
-        this.mainFragmentViewListener = mainFragmentViewListener;
+        this.photosAdapterViewListener = photosAdapterViewListener;
     }
 
     @Override
@@ -54,11 +53,8 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.ViewHolder
     public void onBindViewHolder(ViewHolder holder, int position) {
         Photo photo = photos.get(position);
         Glide.with(context).load("https://farm"+photo.getFarm()+".staticflickr.com/"+photo.getServer()+"/"+photo.getId()+"_"+photo.getSecret()+".jpg").centerCrop().crossFade().into(holder.ivPhoto);
-        holder.ivPhoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mainFragmentViewListener.itemSelected(photo);
-            }
+        holder.ivPhoto.setOnClickListener((View view)-> {
+            photosAdapterViewListener.itemSelected(photo);
         });
     }
 

@@ -10,12 +10,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.etermax.flickr.R;
+import com.etermax.flickr.api.controllers.PersonController;
+import com.etermax.flickr.data.models.Person;
 import com.etermax.flickr.data.models.PhotoDetail;
 import com.etermax.flickr.ui.base.BaseFragment;
+import com.etermax.flickr.ui.modules.profile.ProfileFragment;
 import com.etermax.flickr.utils.DateUtils;
 import com.etermax.flickr.utils.GlideUtils;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by Luis Tundisi on 02/04/2017.
@@ -48,10 +54,12 @@ public class DetailPhotoFragment extends BaseFragment implements DetailPhotoView
     @BindView(R.id.cvDescription)
     CardView cvDescription;
 
-
-
     PhotoDetail photoDetail;
 
+    @Inject
+    PersonController personController;
+
+    DetailPhotoPresenter detailPhotoPresenter;
 
     public static DetailPhotoFragment newInstance(PhotoDetail photoDetail) {
         DetailPhotoFragment fragment = new DetailPhotoFragment();
@@ -74,6 +82,8 @@ public class DetailPhotoFragment extends BaseFragment implements DetailPhotoView
     @Override
     public void onViewReady(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState, View view) {
         setEnableBackToolbar(true);
+        getApplicationComponent().inject(this);
+        detailPhotoPresenter = new DetailPhotoPresenter(personController,this);
         GlideUtils.setPhotoFromApiInImageView(getContext(),photoDetail,ivPhoto);
         GlideUtils.setPhotoProfileFromApiInImageView(getContext(),photoDetail,ivPhotoProfile);
         tvNameProfile.setText(photoDetail.getOwner().getUsername());
@@ -91,13 +101,22 @@ public class DetailPhotoFragment extends BaseFragment implements DetailPhotoView
         tvTakenBy.setText(photoDetail.getOwner().getUsername());
     }
 
-    @Override
-    public void setData() {
 
+    @OnClick({R.id.ivPhotoProfile, R.id.tvNameProfile})
+    public void onClick(View view){
+        showProgressDialog(R.string.loading);
+        detailPhotoPresenter.getProfileById(photoDetail.getOwner().getNsid());
     }
 
     @Override
-    public void onError(String error) {
+    public void goToProfile(Person person) {
+        dismissProgressDialog();
+        pushFragment(ProfileFragment.newInstance(person),true);
+    }
 
+    @Override
+    public void onError() {
+        dismissProgressDialog();
+        simpleToast(getString(R.string.network_error));
     }
 }

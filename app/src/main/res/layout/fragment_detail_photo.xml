@@ -85,7 +85,7 @@
 
             <TextView
                 style="@style/RobotoTextBold"
-                android:layout_marginLeft="@dimen/spacing_10"
+                android:layout_marginLeft="@dimen/spacing_5"
                 android:text="@string/taken_by"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />

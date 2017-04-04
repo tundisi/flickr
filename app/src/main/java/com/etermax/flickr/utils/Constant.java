@@ -10,5 +10,6 @@ public interface Constant {
     String PER_PAGE = "15";
     int TOOLBAR_STANDARD = 0;
     int TOOLBAR_HOME = 1;
+    String URL_SERVER = "https://api.flickr.com/";
 
 }

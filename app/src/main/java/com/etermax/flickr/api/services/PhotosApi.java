@@ -22,4 +22,7 @@ public interface PhotosApi {
 
     @GET("services/rest/?method=flickr.photos.getInfo&api_key=" + Constant.API_KEY + "&format=json&nojsoncallback=1")
     Observable<PhotoDetailResponse> getPhotoById(@Query("photo_id") String photo_id);
+
+    @GET("services/rest/?method=flickr.people.getPhotos&api_key=" + Constant.API_KEY + "&per_page="+Constant.PER_PAGE+"&format=json&nojsoncallback=1")
+    Observable<PhotosResponse> getPhotosByIdPerson(@Query("user_id") String user_id, @Query("page") int page);
 }

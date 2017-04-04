@@ -5,8 +5,10 @@ import com.etermax.flickr.di.modules.ApplicationModule;
 import com.etermax.flickr.di.modules.ControllerModule;
 import com.etermax.flickr.ui.base.BaseActivity;
 import com.etermax.flickr.ui.base.BaseFragment;
+import com.etermax.flickr.ui.modules.detailPhoto.DetailPhotoFragment;
 import com.etermax.flickr.ui.modules.main.MainActivity;
 import com.etermax.flickr.ui.modules.main.MainFragment;
+import com.etermax.flickr.ui.modules.profile.ProfileFragment;
 import com.etermax.flickr.ui.modules.splash.SplashActivity;
 
 import javax.inject.Singleton;
@@ -37,4 +39,7 @@ public interface ApplicationComponent {
 
     void inject(MainFragment mainFragment);
 
+    void inject(DetailPhotoFragment detailPhotoFragment);
+
+    void inject(ProfileFragment profileFragment);
 }

@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.etermax.flickr.R;
+import com.etermax.flickr.data.models.Person;
 import com.etermax.flickr.data.models.PhotoDetail;
 
 /**
@@ -24,6 +25,18 @@ public class GlideUtils {
 
     public static void setPhotoProfileFromApiInImageView(Context context, PhotoDetail photoDetail, ImageView imageView){
         Glide.with(context).load("https://farm"+photoDetail.getOwner().getIconfarm()+".staticflickr.com/"+photoDetail.getOwner().getIconserver()+"/buddyicons/"+photoDetail.getOwner().getNsid()+".jpg").asBitmap().centerCrop().error(ContextCompat.getDrawable(context, R.drawable.ic_account_circle)).into(new BitmapImageViewTarget(imageView) {
+            @Override
+            protected void setResource(Bitmap resource) {
+                RoundedBitmapDrawable circularBitmapDrawable =
+                        RoundedBitmapDrawableFactory.create(context.getResources(), resource);
+                circularBitmapDrawable.setCircular(true);
+                imageView.setImageDrawable(circularBitmapDrawable);
+            }
+        });
+    }
+
+    public static void setPhotoProfileFromApiInImageView(Context context, Person person, ImageView imageView){
+        Glide.with(context).load("https://farm"+person.getIconfarm()+".staticflickr.com/"+person.getIconserver()+"/buddyicons/"+person.getNsid()+".jpg").asBitmap().centerCrop().error(ContextCompat.getDrawable(context, R.drawable.ic_account_circle)).into(new BitmapImageViewTarget(imageView) {
             @Override
             protected void setResource(Bitmap resource) {
                 RoundedBitmapDrawable circularBitmapDrawable =

@@ -21,6 +21,7 @@ import com.etermax.flickr.api.controllers.PhotosController;
 import com.etermax.flickr.data.models.Photo;
 import com.etermax.flickr.data.models.PhotoDetail;
 import com.etermax.flickr.ui.adapters.PhotosAdapter;
+import com.etermax.flickr.ui.adapters.PhotosAdapterView;
 import com.etermax.flickr.ui.base.BaseFragment;
 import com.etermax.flickr.ui.modules.detailPhoto.DetailPhotoFragment;
 import com.etermax.flickr.utils.Constant;
@@ -35,7 +36,7 @@ import butterknife.BindView;
  * Created by Luis Tundisi on 01/04/2017.
  */
 
-public class MainFragment extends BaseFragment implements MainFragmentView, SearchView.OnQueryTextListener {
+public class MainFragment extends BaseFragment implements MainFragmentView, SearchView.OnQueryTextListener, PhotosAdapterView {
 
     @Inject
     PhotosController photosController;
@@ -104,7 +105,6 @@ public class MainFragment extends BaseFragment implements MainFragmentView, Sear
     public void itemSelected(Photo photo) {
         showProgressDialog(R.string.loading);
         mainFragmentPresenter.getPhotoById(photo.getId());
-        photosController.getPhotoById(photo.getId());
     }
 
     @Override

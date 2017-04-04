@@ -35,4 +35,8 @@ public class PhotosController {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
+    public Observable<PhotosResponse> getPhotosByIdPerson(String id, int page) {
+        return photosApi.getPhotosByIdPerson(id, page).subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
 }
