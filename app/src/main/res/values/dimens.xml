@@ -6,7 +6,7 @@
 
     <!-- Font -->
     <dimen name="font_size_title">16sp</dimen>
-
+    <dimen name="font_size_subtitle">14sp</dimen>
 
     <!-- SPACING -->
     <dimen name="spacing_none">0dp</dimen>
@@ -27,5 +27,11 @@
     <dimen name="spacing_xlg">48dp</dimen>
     <dimen name="spacing_xxlg">56dp</dimen>
     <dimen name="spacing_xxxlg">64dp</dimen>
+    <dimen name="height_photo_detail">150dp</dimen>
+    <dimen name="size_photo_profile">48dp</dimen>
+    <dimen name="spacing_5">5dp</dimen>
+
+
+    <dimen name="height_card_view_profile">60dp</dimen>
 
 </resources>

@@ -5,4 +5,14 @@
     <string name="change_recycle">Change recycle</string>
     <string name="search_title">Search</string>
     <string name="search_hint">Search hint</string>
+    <string name="example_title">Title</string>
+    <string name="example_subtitle">Subtitle</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</string>
+    <string name="description">Description</string>
+    <string name="published">Published</string>
+    <string name="taken">Taken</string>
+    <string name="shared">Shared</string>
+    <string name="dowloaded">Dowloaded</string>
+    <string name="printed">Printed</string>
+    <string name="taken_by">Taken by</string>
 </resources>

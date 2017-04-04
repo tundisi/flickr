@@ -1,7 +1,8 @@
 package com.etermax.flickr.ui.modules.main;
 
 import com.etermax.flickr.api.controllers.PhotosController;
-import com.etermax.flickr.data.models.PhotosResponse;
+import com.etermax.flickr.data.response.PhotoDetailResponse;
+import com.etermax.flickr.data.response.PhotosResponse;
 
 /**
  * Created by Luis Tundisi on 02/04/2017.
@@ -33,4 +34,13 @@ public class MainFragmentPresenter {
     public void onFailure(Throwable throwable){
         mainFragmentViewListener.onFailure();
     }
+
+    public void getPhotoById(String id){
+        photosController.getPhotoById(id).subscribe(this::onSuccessDetail , this::onFailure);
+    }
+
+    public void onSuccessDetail(PhotoDetailResponse photoDetailResponse){
+        mainFragmentViewListener.goToFragmentDetailPhoto(photoDetailResponse.getPhoto());
+    }
+
 }

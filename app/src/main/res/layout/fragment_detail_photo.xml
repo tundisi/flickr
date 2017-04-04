@@ -1,13 +1,301 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent">
 
-</LinearLayout>
+        <include
+            layout="@layout/toolbar" />
+
+        <android.support.v7.widget.CardView
+            card_view:cardUseCompatPadding="true"
+            card_view:cardElevation="@dimen/cardview_default_elevation"
+            card_view:cardCornerRadius="@dimen/cardview_default_radius"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/ivPhoto"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_photo_detail" />
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_marginTop="@dimen/spacing_5"
+            card_view:cardUseCompatPadding="true"
+            card_view:cardElevation="@dimen/cardview_default_elevation"
+            card_view:cardCornerRadius="@dimen/cardview_default_radius"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:padding="5dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_marginLeft="@dimen/spacing_20"
+                    android:layout_weight="0"
+                    android:id="@+id/ivPhotoProfile"
+                    android:layout_width="@dimen/size_photo_profile"
+                    android:layout_height="@dimen/size_photo_profile" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_marginLeft="@dimen/spacing_20"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RobotoTextTitle"
+                        android:id="@+id/tvNameProfile"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="@string/example_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        style="@style/RobotoTextSubTitle"
+                        android:id="@+id/tvNamePhoto"
+                        android:text="@string/example_subtitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_marginTop="@dimen/spacing_5"
+            card_view:cardUseCompatPadding="true"
+            card_view:cardElevation="@dimen/cardview_default_elevation"
+            card_view:cardCornerRadius="@dimen/cardview_default_radius"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/RobotoTextBold"
+                android:layout_marginLeft="@dimen/spacing_10"
+                android:text="@string/taken_by"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <com.codesgood.views.JustifiedTextView
+                style="@style/RobotoTextRegular"
+                android:layout_marginTop="@dimen/spacing_16"
+                android:padding="5dp"
+                android:id="@+id/tvTakenBy"
+                android:text="@string/lorem_ipsum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cvDescription"
+            android:layout_marginTop="@dimen/spacing_5"
+            card_view:cardUseCompatPadding="true"
+            card_view:cardElevation="@dimen/cardview_default_elevation"
+            card_view:cardCornerRadius="@dimen/cardview_default_radius"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/RobotoTextBold"
+                android:layout_marginLeft="@dimen/spacing_10"
+                android:text="@string/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+                <com.codesgood.views.JustifiedTextView
+                    style="@style/RobotoTextRegular"
+                    android:layout_marginTop="@dimen/spacing_16"
+                    android:padding="5dp"
+                    android:id="@+id/tvDescription"
+                    android:text="@string/lorem_ipsum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+        </android.support.v7.widget.CardView>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.CardView
+                android:layout_weight="1"
+                android:layout_marginTop="@dimen/spacing_5"
+                card_view:cardUseCompatPadding="true"
+                card_view:cardElevation="@dimen/cardview_default_elevation"
+                card_view:cardCornerRadius="@dimen/cardview_default_radius"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:padding="@dimen/spacing_5"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RobotoTextBold"
+                        android:layout_marginLeft="@dimen/spacing_10"
+                        android:text="@string/published"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_marginLeft="@dimen/spacing_16"
+                        android:id="@+id/tvPublished"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_weight="1"
+                android:layout_marginTop="@dimen/spacing_5"
+                card_view:cardUseCompatPadding="true"
+                card_view:cardElevation="@dimen/cardview_default_elevation"
+                card_view:cardCornerRadius="@dimen/cardview_default_radius"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:padding="@dimen/spacing_5"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RobotoTextBold"
+                        android:layout_marginLeft="@dimen/spacing_10"
+                        android:text="@string/taken"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_marginLeft="@dimen/spacing_16"
+                        android:id="@+id/tvTaken"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.CardView
+                android:layout_weight="1"
+                android:layout_marginTop="@dimen/spacing_5"
+                card_view:cardUseCompatPadding="true"
+                card_view:cardElevation="@dimen/cardview_default_elevation"
+                card_view:cardCornerRadius="@dimen/cardview_default_radius"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:gravity="center"
+                    android:padding="@dimen/spacing_5"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RobotoTextBold"
+                        android:text="@string/dowloaded"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/tvDowloaded"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_weight="1"
+                android:layout_marginTop="@dimen/spacing_5"
+                card_view:cardUseCompatPadding="true"
+                card_view:cardElevation="@dimen/cardview_default_elevation"
+                card_view:cardCornerRadius="@dimen/cardview_default_radius"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:gravity="center"
+                    android:padding="@dimen/spacing_5"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RobotoTextBold"
+                        android:text="@string/shared"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/tvShared"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_weight="1"
+                android:layout_marginTop="@dimen/spacing_5"
+                card_view:cardUseCompatPadding="true"
+                card_view:cardElevation="@dimen/cardview_default_elevation"
+                card_view:cardCornerRadius="@dimen/cardview_default_radius"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:gravity="center"
+                    android:padding="@dimen/spacing_5"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RobotoTextBold"
+                        android:text="@string/printed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/tvPrinted"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

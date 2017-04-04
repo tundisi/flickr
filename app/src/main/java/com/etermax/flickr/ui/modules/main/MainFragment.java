@@ -19,8 +19,10 @@ import android.view.ViewGroup;
 import com.etermax.flickr.R;
 import com.etermax.flickr.api.controllers.PhotosController;
 import com.etermax.flickr.data.models.Photo;
+import com.etermax.flickr.data.models.PhotoDetail;
 import com.etermax.flickr.ui.adapters.PhotosAdapter;
 import com.etermax.flickr.ui.base.BaseFragment;
+import com.etermax.flickr.ui.modules.detailPhoto.DetailPhotoFragment;
 import com.etermax.flickr.utils.Constant;
 
 import java.util.ArrayList;
@@ -88,7 +90,7 @@ public class MainFragment extends BaseFragment implements MainFragmentView, Sear
     @Override
     public void setPhotosAdapter(ArrayList<Photo> photos) {
         dismissProgressDialog();
-        mAdapter = new PhotosAdapter(photos,getContext());
+        mAdapter = new PhotosAdapter(photos,getContext(),this);
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -96,6 +98,19 @@ public class MainFragment extends BaseFragment implements MainFragmentView, Sear
     public void onFailure() {
         dismissProgressDialog();
         simpleToast(getString(R.string.network_error));
+    }
+
+    @Override
+    public void itemSelected(Photo photo) {
+        showProgressDialog(R.string.loading);
+        mainFragmentPresenter.getPhotoById(photo.getId());
+        photosController.getPhotoById(photo.getId());
+    }
+
+    @Override
+    public void goToFragmentDetailPhoto(PhotoDetail photoDetail) {
+        dismissProgressDialog();
+        pushFragment(DetailPhotoFragment.newInstance(photoDetail));
     }
 
     @Override

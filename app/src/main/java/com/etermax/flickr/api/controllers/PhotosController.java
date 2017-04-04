@@ -1,7 +1,9 @@
 package com.etermax.flickr.api.controllers;
 
 import com.etermax.flickr.api.services.PhotosApi;
-import com.etermax.flickr.data.models.PhotosResponse;
+import com.etermax.flickr.data.response.PhotoDetailResponse;
+import com.etermax.flickr.data.response.PhotosResponse;
+
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -25,6 +27,11 @@ public class PhotosController {
 
     public Observable<PhotosResponse> getPhotosSearch(String text, int page) {
         return photosApi.getPhotosByText(text, page).subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Observable<PhotoDetailResponse> getPhotoById(String id) {
+        return photosApi.getPhotoById(id).subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 

@@ -35,4 +35,23 @@
         <item name="fontPath">fonts/Roboto-Bold.ttf</item>
     </style>
 
+    <style name="RobotoTextSubTitle" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/gray_drawer</item>
+        <item name="android:textSize">@dimen/font_size_subtitle</item>
+        <item name="fontPath">fonts/Roboto-Regular.ttf</item>
+    </style>
+
+    <style name="RobotoTextBold" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">@dimen/font_size_regular</item>
+        <item name="fontPath">fonts/Roboto-Bold.ttf</item>
+    </style>
+
+    <style name="RobotoTextRegular" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/gray_drawer</item>
+        <item name="android:textSize">@dimen/font_size_regular</item>
+        <item name="fontPath">fonts/Roboto-Regular.ttf</item>
+    </style>
+
+    <dimen name="font_size_regular">13sp</dimen>
 </resources>

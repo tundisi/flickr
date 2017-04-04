@@ -1,6 +1,7 @@
 package com.etermax.flickr.ui.modules.main;
 
 import com.etermax.flickr.data.models.Photo;
+import com.etermax.flickr.data.models.PhotoDetail;
 
 import java.util.ArrayList;
 
@@ -11,4 +12,6 @@ import java.util.ArrayList;
 public interface MainFragmentView {
     void setPhotosAdapter(ArrayList<Photo> photos);
     void onFailure();
+    void itemSelected(Photo photo);
+    void goToFragmentDetailPhoto(PhotoDetail photoDetail);
 }
