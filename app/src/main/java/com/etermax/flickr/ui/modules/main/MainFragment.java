@@ -1,11 +1,14 @@
 package com.etermax.flickr.ui.modules.main;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,6 +21,7 @@ import com.etermax.flickr.api.controllers.PhotosController;
 import com.etermax.flickr.data.models.Photo;
 import com.etermax.flickr.ui.adapters.PhotosAdapter;
 import com.etermax.flickr.ui.base.BaseFragment;
+import com.etermax.flickr.utils.Constant;
 
 import java.util.ArrayList;
 
@@ -29,17 +33,20 @@ import butterknife.BindView;
  * Created by Luis Tundisi on 01/04/2017.
  */
 
-public class MainFragment extends BaseFragment implements MainFragmentView {
+public class MainFragment extends BaseFragment implements MainFragmentView, SearchView.OnQueryTextListener {
 
     @Inject
     PhotosController photosController;
 
     @BindView(R.id.rvPhotos)
     RecyclerView mRecyclerView;
+
     GridLayoutManager gridLayoutManager;
-    private PhotosAdapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+    PhotosAdapter mAdapter;
+    RecyclerView.LayoutManager mLayoutManager;
+
     Menu menu;
+    SearchView searchView;
 
     boolean isViewWithCatalog = true;
 
@@ -66,7 +73,7 @@ public class MainFragment extends BaseFragment implements MainFragmentView {
     public void onViewReady(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState, View view) {
         initialize();
         showProgressDialog(R.string.loading);
-        mainFragmentPresenter.getPhotos();
+        mainFragmentPresenter.getPhotosRecently();
     }
 
     public void initialize(){
@@ -96,6 +103,10 @@ public class MainFragment extends BaseFragment implements MainFragmentView {
     {
         inflater.inflate(R.menu.menu_home, menu);
         this.menu = menu;
+        SearchManager searchManager = (SearchManager) getContext().getSystemService(Context.SEARCH_SERVICE);
+        searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+        searchView.setOnQueryTextListener(this);
         return;
     }
 
@@ -110,9 +121,21 @@ public class MainFragment extends BaseFragment implements MainFragmentView {
                     menu.findItem(R.id.change_recycle).setIcon(ContextCompat.getDrawable(getContext(),R.drawable.ic_list));
                 else
                     menu.findItem(R.id.change_recycle).setIcon(ContextCompat.getDrawable(getContext(),R.drawable.ic_grid_on));
-
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        menu.findItem(R.id.search).collapseActionView();
+        showProgressDialog(R.string.loading);
+        mainFragmentPresenter.getPhotosSearch(query , Constant.DEFAULT_PAGE);
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        return false;
     }
 }

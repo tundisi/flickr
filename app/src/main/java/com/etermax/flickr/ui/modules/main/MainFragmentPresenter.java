@@ -18,8 +18,12 @@ public class MainFragmentPresenter {
         this.photosController = photosController;
     }
 
-    public void getPhotos(){
+    public void getPhotosRecently(){
         photosController.getPhotos().subscribe(this::onSuccess , this::onFailure);
+    }
+
+    public void getPhotosSearch(String text,int page){
+        photosController.getPhotosSearch(text,page).subscribe(this::onSuccess , this::onFailure);
     }
 
     public void onSuccess(PhotosResponse photosResponse){

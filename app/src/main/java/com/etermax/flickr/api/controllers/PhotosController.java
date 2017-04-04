@@ -23,4 +23,9 @@ public class PhotosController {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
+    public Observable<PhotosResponse> getPhotosSearch(String text, int page) {
+        return photosApi.getPhotosByText(text, page).subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
 }

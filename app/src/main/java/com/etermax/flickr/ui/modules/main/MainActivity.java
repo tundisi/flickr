@@ -17,7 +17,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void onCreateView(Bundle savedInstanceState) {
-        pushFragment(MainFragment.newInstance());
+        pushFragment(MainFragment.newInstance(),false);
     }
 
     @Override

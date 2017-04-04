@@ -3,4 +3,6 @@
     <string name="loading">Loading</string>
     <string name="network_error">Error con el servidor, por favor intentar nuevamente</string>
     <string name="change_recycle">Change recycle</string>
+    <string name="search_title">Search</string>
+    <string name="search_hint">Search hint</string>
 </resources>
