@@ -35,6 +35,11 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.ViewHolder
         }
     }
 
+    public void addNewArrayListPhotos(ArrayList<Photo> photos){
+        this.photos.addAll(photos);
+        notifyDataSetChanged();
+    }
+
     public PhotosAdapter(ArrayList<Photo> photos, Context context, PhotosAdapterView photosAdapterViewListener) {
         this.photos = photos;
         this.context = context;

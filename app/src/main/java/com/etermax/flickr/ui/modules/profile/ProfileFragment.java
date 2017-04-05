@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.etermax.flickr.R;
 import com.etermax.flickr.api.controllers.PhotosController;
 import com.etermax.flickr.data.models.Person;
@@ -21,11 +20,8 @@ import com.etermax.flickr.ui.base.BaseFragment;
 import com.etermax.flickr.ui.modules.detailPhoto.DetailPhotoFragment;
 import com.etermax.flickr.utils.Constant;
 import com.etermax.flickr.utils.GlideUtils;
-
 import java.util.ArrayList;
-
 import javax.inject.Inject;
-
 import butterknife.BindView;
 
 /**

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -36,22 +37,26 @@ import butterknife.BindView;
  * Created by Luis Tundisi on 01/04/2017.
  */
 
-public class MainFragment extends BaseFragment implements MainFragmentView, SearchView.OnQueryTextListener, PhotosAdapterView {
+public class MainFragment extends BaseFragment implements MainFragmentView, SearchView.OnQueryTextListener, PhotosAdapterView, SwipeRefreshLayout.OnRefreshListener {
 
     @Inject
     PhotosController photosController;
 
     @BindView(R.id.rvPhotos)
     RecyclerView mRecyclerView;
+    @BindView(R.id.rlPhotos)
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
     GridLayoutManager gridLayoutManager;
     PhotosAdapter mAdapter;
     RecyclerView.LayoutManager mLayoutManager;
 
+    boolean loading = true, isViewWithCatalog = true, isSearch = false;
+    int pastVisiblesItems, visibleItemCount, totalItemCount, page = Constant.DEFAULT_PAGE;
+    String querySearch = "", querySearchCurrent = "";
+
     Menu menu;
     SearchView searchView;
-
-    boolean isViewWithCatalog = true;
 
     MainFragmentPresenter mainFragmentPresenter;
 
@@ -82,6 +87,7 @@ public class MainFragment extends BaseFragment implements MainFragmentView, Sear
     public void initialize(){
         getApplicationComponent().inject(this);
         mainFragmentPresenter = new MainFragmentPresenter(this , photosController);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getContext());
         gridLayoutManager = new GridLayoutManager(getContext(), 3);
@@ -91,14 +97,28 @@ public class MainFragment extends BaseFragment implements MainFragmentView, Sear
     @Override
     public void setPhotosAdapter(ArrayList<Photo> photos) {
         dismissProgressDialog();
-        mAdapter = new PhotosAdapter(photos,getContext(),this);
-        mRecyclerView.setAdapter(mAdapter);
+        if(!querySearch.equals(querySearchCurrent)) {
+            querySearchCurrent = querySearch;
+            mAdapter = new PhotosAdapter(photos, getContext(), this);
+            mRecyclerView.setAdapter(mAdapter);
+        }else {
+            if(mAdapter==null) {
+                mAdapter = new PhotosAdapter(photos, getContext(), this);
+                mRecyclerView.setAdapter(mAdapter);
+            } else
+                mAdapter.addNewArrayListPhotos(photos);
+        }
+        loading = true;
+        mRecyclerView.addOnScrollListener(onScrollListener);
+        mSwipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
     public void onFailure() {
         dismissProgressDialog();
         simpleToast(getString(R.string.network_error));
+        loading = true;
+        mSwipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
@@ -141,11 +161,16 @@ public class MainFragment extends BaseFragment implements MainFragmentView, Sear
         return super.onOptionsItemSelected(item);
     }
 
+    /* Search */
+
     @Override
     public boolean onQueryTextSubmit(String query) {
         menu.findItem(R.id.search).collapseActionView();
         showProgressDialog(R.string.loading);
         mainFragmentPresenter.getPhotosSearch(query , Constant.DEFAULT_PAGE);
+        isSearch = true;
+        querySearch = query;
+        page = 1;
         return false;
     }
 
@@ -153,4 +178,46 @@ public class MainFragment extends BaseFragment implements MainFragmentView, Sear
     public boolean onQueryTextChange(String newText) {
         return false;
     }
+
+    /* End Search */
+
+    /* Pagination */
+
+    private final RecyclerView.OnScrollListener onScrollListener = new RecyclerView.OnScrollListener() {
+        @Override
+        public void onScrollStateChanged(final RecyclerView recyclerView, final int newState) {
+        }
+
+        @Override
+        public void onScrolled(final RecyclerView recyclerView, final int dx, final int dy) {
+            if(dy > 0)
+            {
+                visibleItemCount  = mLayoutManager.getChildCount();
+                totalItemCount    = mLayoutManager.getItemCount();
+                pastVisiblesItems = ((LinearLayoutManager)recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
+                if (loading)
+                {
+                    if ( (visibleItemCount + pastVisiblesItems) >= (isViewWithCatalog ? totalItemCount : totalItemCount + 3))
+                    {
+                        loading = false;
+                        page++;
+                        showProgressDialog(R.string.loading);
+                        if(!isSearch)
+                            mainFragmentPresenter.getPhotosRecently();
+                        else
+                            mainFragmentPresenter.getPhotosSearch(querySearch,page);
+                    }
+                }
+            }
+        }
+    };
+
+    /* End Pagination */
+
+    @Override
+    public void onRefresh() {
+        showProgressDialog(R.string.loading);
+        mainFragmentPresenter.getPhotosRecently();
+    }
+
 }
