@@ -59,6 +59,8 @@ public class MainFragment extends BaseFragment implements MainFragmentView, Sear
     Menu menu;
     SearchView searchView;
 
+    ArrayList<Photo> photos;
+
     MainFragmentPresenter mainFragmentPresenter;
 
     public static MainFragment newInstance() {
@@ -101,14 +103,18 @@ public class MainFragment extends BaseFragment implements MainFragmentView, Sear
         dismissProgressDialog();
         if(!querySearch.equals(querySearchCurrent)) {
             querySearchCurrent = querySearch;
+            this.photos = photos;
             mAdapter = new PhotosAdapter(photos, getContext(), this);
             mRecyclerView.setAdapter(mAdapter);
         }else {
             if(mAdapter==null) {
+                this.photos = photos;
                 mAdapter = new PhotosAdapter(photos, getContext(), this);
                 mRecyclerView.setAdapter(mAdapter);
-            } else
+            } else {
+                this.photos.addAll(photos);
                 mAdapter.addNewArrayListPhotos(photos);
+            }
         }
         loading = true;
         mRecyclerView.addOnScrollListener(onScrollListener);
@@ -194,12 +200,12 @@ public class MainFragment extends BaseFragment implements MainFragmentView, Sear
         public void onScrolled(final RecyclerView recyclerView, final int dx, final int dy) {
             if(dy > 0)
             {
-                visibleItemCount  = mLayoutManager.getChildCount();
+                visibleItemCount  = ( isViewWithCatalog ? mLayoutManager.getChildCount() : gridLayoutManager.getChildCount());
                 totalItemCount    = mLayoutManager.getItemCount();
                 pastVisiblesItems = ((LinearLayoutManager)recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
                 if (loading)
                 {
-                    if ( (visibleItemCount + pastVisiblesItems) >= (isViewWithCatalog ? totalItemCount : totalItemCount + 3))
+                    if (visibleItemCount + pastVisiblesItems >= (isViewWithCatalog ? totalItemCount : (photos.size())))
                     {
                         loading = false;
                         page++;
