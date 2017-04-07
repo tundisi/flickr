@@ -1,5 +1,7 @@
 package com.etermax.flickr.ui.modules.splash;
 
+import com.etermax.flickr.utils.Constant;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -9,7 +11,6 @@ import java.util.TimerTask;
 
 public class SplashPresenter {
 
-    private static final long SPLASH_SCREEN_DELAY = 3000;
     SplashView splashViewListener;
 
     public SplashPresenter(SplashView splashViewListener){
@@ -25,6 +26,6 @@ public class SplashPresenter {
         };
 
         Timer timer = new Timer();
-        timer.schedule(task, SPLASH_SCREEN_DELAY);
+        timer.schedule(task, Constant.SPLASH_SCREEN_DELAY);
     }
 }

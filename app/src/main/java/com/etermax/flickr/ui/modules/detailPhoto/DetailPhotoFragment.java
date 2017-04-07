@@ -120,10 +120,13 @@ public class DetailPhotoFragment extends BaseFragment implements DetailPhotoView
 
 
         if(photoDetail.getTags().getTags()!=null) {
-            String[] tags = new String[photoDetail.getTags().getTags().size()];
-            for (int i = 0; i < photoDetail.getTags().getTags().size(); i++)
-                tags[i] = photoDetail.getTags().getTags().get(i).get_content();
-            tagGroup.setTags(tags);
+            if(photoDetail.getTags().getTags().size()!=0) {
+                String[] tags = new String[photoDetail.getTags().getTags().size()];
+                for (int i = 0; i < photoDetail.getTags().getTags().size(); i++)
+                    tags[i] = photoDetail.getTags().getTags().get(i).get_content();
+                tagGroup.setTags(tags);
+            }else
+                cvTags.setVisibility(View.GONE);
         }else
             cvTags.setVisibility(View.GONE);
 

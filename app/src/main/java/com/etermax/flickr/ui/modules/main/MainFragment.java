@@ -179,6 +179,9 @@ public class MainFragment extends BaseFragment implements MainFragmentView, Sear
         isSearch = true;
         querySearch = query;
         page = 1;
+        searchView.onActionViewCollapsed();
+        searchView.setIconified(false);
+        searchView.setIconifiedByDefault(false);
         return false;
     }
 

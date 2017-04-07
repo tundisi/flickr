@@ -93,7 +93,7 @@ public class ProfileFragment extends BaseFragment implements ProfileFragmentView
         gridLayoutManager = new GridLayoutManager(getContext(), 3);
         rvPhotos.setLayoutManager(gridLayoutManager);
         GlideUtils.setPhotoProfileFromApiInImageView(getContext(),person,ivPhotoProfile);
-        tvNameProfile.setText(person.getRealname().get_content().isEmpty() ? person.getUsername().get_content() : person.getRealname().get_content());
+        tvNameProfile.setText((person.getRealname().get_content() == null || person.getRealname().get_content().isEmpty()) ? person.getUsername().get_content() : person.getRealname().get_content());
         if(person.getDescription().get_content()!=null)
             tvDescription.setText(person.getDescription().get_content());
         else
