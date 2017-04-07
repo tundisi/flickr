@@ -7,17 +7,17 @@ import java.util.ArrayList;
  */
 
 public class Tags {
-    ArrayList<Tag> tags;
+    ArrayList<Tag> tag;
 
     public Tags(ArrayList<Tag> tags) {
-        this.tags = tags;
+        this.tag = tags;
     }
 
     public ArrayList<Tag> getTags() {
-        return tags;
+        return tag;
     }
 
     public void setTags(ArrayList<Tag> tags) {
-        this.tags = tags;
+        this.tag = tags;
     }
 }

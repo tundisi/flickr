@@ -16,6 +16,7 @@ import com.etermax.flickr.api.controllers.PersonController;
 import com.etermax.flickr.data.models.Person;
 import com.etermax.flickr.data.models.PhotoDetail;
 import com.etermax.flickr.ui.base.BaseFragment;
+import com.etermax.flickr.ui.dialogs.DetailPhotoFragmentDialog;
 import com.etermax.flickr.ui.modules.profile.ProfileFragment;
 import com.etermax.flickr.utils.Constant;
 import com.etermax.flickr.utils.DateUtils;
@@ -59,6 +60,8 @@ public class DetailPhotoFragment extends BaseFragment implements DetailPhotoView
 
     @BindView(R.id.cvDescription)
     CardView cvDescription;
+    @BindView(R.id.cvTags)
+    CardView cvTags;
 
     @BindView(R.id.tag_group)
     TagGroup tagGroup;
@@ -94,6 +97,10 @@ public class DetailPhotoFragment extends BaseFragment implements DetailPhotoView
         setEnableBackToolbar(true);
         getApplicationComponent().inject(this);
         detailPhotoPresenter = new DetailPhotoPresenter(personController,this);
+        inicialize();
+    }
+
+    public void inicialize(){
         GlideUtils.setPhotoFromApiInImageView(getContext(),photoDetail,ivPhoto);
         GlideUtils.setPhotoProfileFromApiInImageView(getContext(),photoDetail,ivPhotoProfile);
         tvNameProfile.setText(photoDetail.getOwner().getUsername());
@@ -111,12 +118,15 @@ public class DetailPhotoFragment extends BaseFragment implements DetailPhotoView
         tvShared.setText(String.valueOf(photoDetail.getUsage().getCanshare()));
         tvTakenBy.setText(photoDetail.getOwner().getUsername());
 
+
         if(photoDetail.getTags().getTags()!=null) {
             String[] tags = new String[photoDetail.getTags().getTags().size()];
             for (int i = 0; i < photoDetail.getTags().getTags().size(); i++)
                 tags[i] = photoDetail.getTags().getTags().get(i).get_content();
             tagGroup.setTags(tags);
-        }
+        }else
+            cvTags.setVisibility(View.GONE);
+
     }
 
     @Override
@@ -125,11 +135,15 @@ public class DetailPhotoFragment extends BaseFragment implements DetailPhotoView
         menu.clear();
     }
 
-    @OnClick({R.id.ivPhotoProfile, R.id.tvNameProfile})
-    public void onClick(){
-        showProgressDialog(R.string.loading);
-        goBack();
-        detailPhotoPresenter.getProfileById(photoDetail.getOwner().getNsid());
+    @OnClick({R.id.ivPhotoProfile, R.id.tvNameProfile, R.id.ivPhoto})
+    public void onClick(View view){
+        if(view.getId()!=R.id.ivPhoto) {
+            showProgressDialog(R.string.loading);
+            goBack();
+            detailPhotoPresenter.getProfileById(photoDetail.getOwner().getNsid());
+        }else{
+            pushFragment(DetailPhotoFragmentDialog.newInstance(photoDetail));
+        }
     }
 
     @Override

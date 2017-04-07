@@ -59,7 +59,7 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.itemView.setAnimation(AnimationUtils.loadAnimation(context, R.anim.interpolar));
-        photo = photos.get(position);
+        Photo photo = photos.get(position);
         Glide.with(context).load("https://farm"+photo.getFarm()+".staticflickr.com/"+photo.getServer()+"/"+photo.getId()+"_"+photo.getSecret()+".jpg").centerCrop().crossFade().into(holder.ivPhoto);
         holder.ivPhoto.setOnClickListener((View view)-> {
             photosAdapterViewListener.itemSelected(photo);

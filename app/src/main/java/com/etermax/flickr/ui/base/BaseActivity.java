@@ -1,6 +1,7 @@
 package com.etermax.flickr.ui.base;
 
 import android.app.AlertDialog;
+import android.app.DialogFragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -129,6 +130,18 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     // End Replace Fragment
+
+    // Push Dialogs
+
+    public void pushFragment(DialogFragment dialogFragment){
+        dialogFragment.show(getFragmentManager(),dialogFragment.getTag());
+    }
+
+    public void pushFragment(DialogFragment dialogFragment, boolean cancelable){
+        dialogFragment.setCancelable(cancelable);
+        dialogFragment.show(getFragmentManager(),dialogFragment.getTag());
+    }
+
 
     public void setToolbar(Toolbar toolBar) {
         if (toolBar != null) {

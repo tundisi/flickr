@@ -1,5 +1,6 @@
 package com.etermax.flickr.ui.base;
 
+import android.app.DialogFragment;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -19,7 +20,6 @@ import android.widget.TextView;
 
 import com.etermax.flickr.R;
 import com.etermax.flickr.di.ApplicationComponent;
-import com.etermax.flickr.ui.modules.profile.ProfileFragment;
 import com.etermax.flickr.utils.Constant;
 
 import butterknife.ButterKnife;
@@ -104,6 +104,14 @@ public abstract class BaseFragment extends Fragment {
     // Replace Fragment
     protected void pushFragment(Fragment fragment, boolean b) {
         activity.pushFragment(fragment, R.id.container, b);
+    }
+
+    public void pushFragment(DialogFragment dialogFragment){
+        activity.pushFragment(dialogFragment);
+    }
+
+    public void pushFragment(DialogFragment dialogFragment, boolean cancelable){
+        activity.pushFragment(dialogFragment,cancelable);
     }
 
     public void onCreateToolbar(View view, int typeToolbar) {
@@ -230,13 +238,6 @@ public abstract class BaseFragment extends Fragment {
         String tag = getLastTagFragment();
         BaseFragment baseFragment = activity.findFragmentByTag(tag);
         return baseFragment != null && (!tag.isEmpty() && baseFragment.haveToolbar);
-    }
-
-    public boolean isProfileFragmentExits(){
-        if(activity.findFragmentByTag(ProfileFragment.TAG) != null)
-            return true;
-        else
-            return false;
     }
 
     protected void goBack(int number) {
