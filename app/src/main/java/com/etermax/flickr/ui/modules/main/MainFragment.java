@@ -200,7 +200,7 @@ public class MainFragment extends BaseFragment implements MainFragmentView, Sear
         public void onScrolled(final RecyclerView recyclerView, final int dx, final int dy) {
             if(dy > 0)
             {
-                visibleItemCount  = ( isViewWithCatalog ? mLayoutManager.getChildCount() : gridLayoutManager.getChildCount());
+                visibleItemCount  = (isViewWithCatalog ? mLayoutManager.getChildCount() : gridLayoutManager.getChildCount());
                 totalItemCount    = mLayoutManager.getItemCount();
                 pastVisiblesItems = ((LinearLayoutManager)recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
                 if (loading)

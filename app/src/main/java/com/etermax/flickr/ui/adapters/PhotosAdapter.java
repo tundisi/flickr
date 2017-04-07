@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -24,6 +25,7 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.ViewHolder
     private final Context context;
     private ArrayList<Photo> photos;
     PhotosAdapterView photosAdapterViewListener;
+    Photo photo;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.ivPhoto)
@@ -56,7 +58,8 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Photo photo = photos.get(position);
+        holder.itemView.setAnimation(AnimationUtils.loadAnimation(context, R.anim.interpolar));
+        photo = photos.get(position);
         Glide.with(context).load("https://farm"+photo.getFarm()+".staticflickr.com/"+photo.getServer()+"/"+photo.getId()+"_"+photo.getSecret()+".jpg").centerCrop().crossFade().into(holder.ivPhoto);
         holder.ivPhoto.setOnClickListener((View view)-> {
             photosAdapterViewListener.itemSelected(photo);
