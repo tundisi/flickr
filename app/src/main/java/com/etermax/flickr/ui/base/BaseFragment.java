@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 
 import com.etermax.flickr.R;
 import com.etermax.flickr.di.ApplicationComponent;
+import com.etermax.flickr.ui.modules.profile.ProfileFragment;
 import com.etermax.flickr.utils.Constant;
 
 import butterknife.ButterKnife;
@@ -55,6 +57,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
+        setHasOptionsMenu(true);
         View view = inflater.inflate(getLayoutView(), container, false);
         ((BaseActivity) getActivity()).getApplicationComponent().inject(this);
         if (haveToolbar) {
@@ -107,9 +110,15 @@ public abstract class BaseFragment extends Fragment {
         try {
             switch (typeToolbar){
                 case Constant.TOOLBAR_STANDARD:
+                    Log.d("-->","standar");
                     mToolbar = (Toolbar) view.findViewById(R.id.toolbar);
-                    tvTitle = (TextView) view.findViewById(R.id.tvTitle);
+                    break;
+                case Constant.TOOLBAR_DETAIL:
+                    Log.d("-->","detail");
+                    mToolbar = (Toolbar) view.findViewById(R.id.toolbar_detail);;
+                    break;
             }
+            tvTitle = (TextView) view.findViewById(R.id.tvTitle);
             setToolBar(mToolbar);
         } catch (Exception e) {
             haveToolbar = false;
@@ -221,6 +230,13 @@ public abstract class BaseFragment extends Fragment {
         String tag = getLastTagFragment();
         BaseFragment baseFragment = activity.findFragmentByTag(tag);
         return baseFragment != null && (!tag.isEmpty() && baseFragment.haveToolbar);
+    }
+
+    public boolean isProfileFragmentExits(){
+        if(activity.findFragmentByTag(ProfileFragment.TAG) != null)
+            return true;
+        else
+            return false;
     }
 
     protected void goBack(int number) {

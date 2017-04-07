@@ -7,6 +7,7 @@
     <!-- Font -->
     <dimen name="font_size_title">16sp</dimen>
     <dimen name="font_size_subtitle">14sp</dimen>
+    <dimen name="font_size_regular">13sp</dimen>
 
     <!-- SPACING -->
     <dimen name="spacing_none">0dp</dimen>
@@ -33,5 +34,10 @@
 
 
     <dimen name="height_card_view_profile">60dp</dimen>
+
+
+    <!-- Card View-->
+    <dimen name="card_corner">2dp</dimen>
+    <dimen name="card_elevation">4dp</dimen>
 
 </resources>

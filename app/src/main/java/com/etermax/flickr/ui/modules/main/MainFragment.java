@@ -10,6 +10,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -68,7 +69,8 @@ public class MainFragment extends BaseFragment implements MainFragmentView, Sear
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHaveToolbar(true);
+        Log.d("-->","Pase por aki");
+        setHaveToolbar(true,Constant.TOOLBAR_STANDARD);
         setHasOptionsMenu(true);
     }
 
@@ -130,7 +132,7 @@ public class MainFragment extends BaseFragment implements MainFragmentView, Sear
     @Override
     public void goToFragmentDetailPhoto(PhotoDetail photoDetail) {
         dismissProgressDialog();
-        pushFragment(DetailPhotoFragment.newInstance(photoDetail));
+        showFragment(DetailPhotoFragment.newInstance(photoDetail),true);
     }
 
     @Override
