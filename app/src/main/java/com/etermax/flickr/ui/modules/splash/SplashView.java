@@ -5,6 +5,5 @@ package com.etermax.flickr.ui.modules.splash;
  */
 
 public interface SplashView {
-    void goToLoginActivity();
     void goToMainActivity();
 }

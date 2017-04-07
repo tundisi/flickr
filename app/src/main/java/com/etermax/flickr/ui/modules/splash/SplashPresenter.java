@@ -20,7 +20,7 @@ public class SplashPresenter {
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
-                splashViewListener.goToLoginActivity();
+                splashViewListener.goToMainActivity();
             }
         };
 
