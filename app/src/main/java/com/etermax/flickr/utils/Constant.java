@@ -12,4 +12,5 @@ public interface Constant {
     int TOOLBAR_DETAIL = 1;
     String URL_SERVER = "https://api.flickr.com/";
     int SPLASH_SCREEN_DELAY = 3000;
+    int DEFAULT_NUM_GRID = 3;
 }

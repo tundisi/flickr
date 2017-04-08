@@ -94,7 +94,7 @@ public class MainFragment extends BaseFragment implements MainFragmentView, Sear
         mSwipeRefreshLayout.setOnRefreshListener(this);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getContext());
-        gridLayoutManager = new GridLayoutManager(getContext(), 3);
+        gridLayoutManager = new GridLayoutManager(getContext(), Constant.DEFAULT_NUM_GRID);
         mRecyclerView.setLayoutManager(mLayoutManager);
     }
 
