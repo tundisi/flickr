@@ -24,7 +24,7 @@ import android.widget.Toast;
 
 import com.etermax.flickr.R;
 import com.etermax.flickr.di.App;
-import com.etermax.flickr.di.ApplicationComponent;
+import com.etermax.flickr.di.components.ApplicationComponent;
 
 import java.util.ArrayList;
 

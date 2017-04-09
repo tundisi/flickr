@@ -13,6 +13,9 @@ public class PhotoDetailResponse {
         this.photo = photo;
     }
 
+    public PhotoDetailResponse() {
+    }
+
     public PhotoDetail getPhoto() {
         return photo;
     }

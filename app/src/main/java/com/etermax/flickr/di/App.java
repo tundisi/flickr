@@ -2,6 +2,8 @@ package com.etermax.flickr.di;
 
 import android.app.Application;
 
+import com.etermax.flickr.di.components.ApplicationComponent;
+import com.etermax.flickr.di.components.DaggerApplicationComponent;
 import com.etermax.flickr.di.modules.ApplicationModule;
 
 /**
@@ -10,15 +12,20 @@ import com.etermax.flickr.di.modules.ApplicationModule;
 
 public class App extends Application {
 
-    private ApplicationComponent applicationComponent;
+    public ApplicationComponent applicationComponent;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        initializeInjector();
+    }
+
+    protected void initializeInjector(){
         applicationComponent = DaggerApplicationComponent.builder().applicationModule(new ApplicationModule(this)).build();
     }
 
     public ApplicationComponent getApplicationComponent() {
         return applicationComponent;
     }
+
 }

@@ -10,12 +10,18 @@ android {
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.etermax.flickr.mock.MockTestRunner"
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        test {
+            resources { srcDir 'androidTest' }
         }
     }
 
@@ -40,8 +46,11 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+
+    androidTestAnnotationProcessor  "com.google.dagger:dagger-compiler:$daggerVersion"
     compile 'com.android.support:appcompat-v7:25.1.0'
     testCompile 'junit:junit:4.12'
+    androidTestCompile 'org.mockito:mockito-android:2.6.2'
 
     // Network
     compile "com.github.bumptech.glide:glide:$glideVersion"

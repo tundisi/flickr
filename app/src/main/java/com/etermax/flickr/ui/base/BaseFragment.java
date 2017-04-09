@@ -19,7 +19,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.etermax.flickr.R;
-import com.etermax.flickr.di.ApplicationComponent;
+import com.etermax.flickr.di.components.ApplicationComponent;
 import com.etermax.flickr.utils.Constant;
 
 import butterknife.ButterKnife;

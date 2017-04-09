@@ -3,7 +3,7 @@ package com.etermax.flickr.data.response;
 import com.etermax.flickr.data.models.Photos;
 
 /**
- * Created by Ale on 01/04/2017.
+ * Created by Luis Tundisi on 01/04/2017.
  */
 
 public class PhotosResponse {

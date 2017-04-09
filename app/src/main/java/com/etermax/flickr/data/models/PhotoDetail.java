@@ -35,6 +35,9 @@ public class PhotoDetail {
         this.tags = tags;
     }
 
+    public PhotoDetail() {
+    }
+
     public String getId() {
         return id;
     }

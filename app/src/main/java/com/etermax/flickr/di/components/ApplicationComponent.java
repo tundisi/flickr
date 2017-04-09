@@ -1,4 +1,4 @@
-package com.etermax.flickr.di;
+package com.etermax.flickr.di.components;
 
 import com.etermax.flickr.di.modules.ApiModule;
 import com.etermax.flickr.di.modules.ApplicationModule;
@@ -29,6 +29,7 @@ import dagger.Component;
 )
 
 public interface ApplicationComponent {
+
     void inject(BaseActivity baseActivity);
 
     void inject(BaseFragment baseFragment);
