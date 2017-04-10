@@ -5,11 +5,12 @@ package com.etermax.flickr.utils;
  */
 
 public interface Constant {
-
+    
     String API_KEY = "ae8225a48bfe7ed6b3aafe65eb26ac41";
     String DEFAULT_DESCRIPTION = "description";
     String DEFAULT_TITLE = "Title";
     String DEFAULT_ID = "1";
+    String DEFAULT_NAME = "Default name";
     String DEFAULT_OWNER = "owner";
     String DEFAULT_SECRET = "secret";
     String DEFAULT_SERVER = "server";

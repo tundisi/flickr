@@ -13,6 +13,9 @@ public class PersonResponse {
         this.person = person;
     }
 
+    public PersonResponse() {
+    }
+
     public Person getPerson() {
         return person;
     }

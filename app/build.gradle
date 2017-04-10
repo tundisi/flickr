@@ -12,9 +12,19 @@ android {
         versionName "1.0"
         testInstrumentationRunner "com.etermax.flickr.mock.MockTestRunner"
     }
+
     buildTypes {
-        release {
+        debug {
             minifyEnabled false
+            shrinkResources false
+            debuggable true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            minifyEnabled true
+            shrinkResources true
+            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -36,21 +46,28 @@ ext{
     daggerVersion      = '2.9'
     calligraphyVersion = '2.2.0'
     glideVersion       = '3.7.0'
-    rxJavaVersion      = '2.0.1'
+    rxJavaVersion      = '1.1.6'
+    rxAndroidVersion   = '1.2.1'
     supportLibVersion  = '25.1.0'
-
+    retrofitVersion    = '2.0.2'
+    mockitoVersion     = '2.6.2'
+    gsonConvVersion    = '2.0.0'
+    interceptorVersion = '3.3.1'
+    gsonVersion        = '2.4'
+    justifiedVersion   = '1.0.2'
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Test
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-
     androidTestAnnotationProcessor  "com.google.dagger:dagger-compiler:$daggerVersion"
     compile 'com.android.support:appcompat-v7:25.1.0'
     testCompile 'junit:junit:4.12'
-    androidTestCompile 'org.mockito:mockito-android:2.6.2'
+    androidTestCompile "org.mockito:mockito-android:$mockitoVersion"
 
     // Network
     compile "com.github.bumptech.glide:glide:$glideVersion"
@@ -62,25 +79,23 @@ dependencies {
     annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
 
     //Retrofit
-    compile 'com.squareup.retrofit2:retrofit:2.0.2'
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
-    compile 'com.squareup.retrofit2:converter-gson:2.0.0'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.3.1'
+    compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    compile "com.squareup.retrofit2:adapter-rxjava:$retrofitVersion"
+    compile "com.squareup.retrofit2:converter-gson:$gsonConvVersion"
+    compile "com.squareup.okhttp3:logging-interceptor:$interceptorVersion"
 
     //RxAndroid
-    compile 'io.reactivex:rxandroid:1.2.1'
-    compile 'io.reactivex:rxjava:1.1.6'
+    compile "io.reactivex:rxandroid:$rxAndroidVersion"
+    compile "io.reactivex:rxjava:$rxJavaVersion"
 
     //Gson
-    compile 'com.google.code.gson:gson:2.4'
+    compile "com.google.code.gson:gson:$gsonVersion"
 
     // UI
     compile "uk.co.chrisjenx:calligraphy:$calligraphyVersion"
-    compile 'com.codesgood:justifiedtextview:1.0.2'
+    compile "com.codesgood:justifiedtextview:$justifiedVersion"
     compile 'com.android.support:cardview-v7:25.1.0'
     compile 'com.android.support:recyclerview-v7:25.1.0'
     compile "com.android.support:design:$supportLibVersion"
     compile 'me.gujun.android.taggroup:library:1.4@aar'
-    //compile "com.android.support:appcompat-v7$supportLibVersion"
-
 }

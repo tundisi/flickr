@@ -3,13 +3,17 @@ package com.etermax.flickr.mock;
 import com.etermax.flickr.data.models.Comments;
 import com.etermax.flickr.data.models.Dates;
 import com.etermax.flickr.data.models.Description;
+import com.etermax.flickr.data.models.Person;
 import com.etermax.flickr.data.models.Photo;
 import com.etermax.flickr.data.models.PhotoDetail;
 import com.etermax.flickr.data.models.Photos;
+import com.etermax.flickr.data.models.Realname;
 import com.etermax.flickr.data.models.Tag;
 import com.etermax.flickr.data.models.Tags;
 import com.etermax.flickr.data.models.Title;
 import com.etermax.flickr.data.models.Usage;
+import com.etermax.flickr.data.models.Username;
+import com.etermax.flickr.data.response.PersonResponse;
 import com.etermax.flickr.data.response.PhotoDetailResponse;
 import com.etermax.flickr.data.response.PhotosResponse;
 import com.etermax.flickr.utils.Constant;
@@ -53,7 +57,6 @@ public class MockResponse {
         return photosResponse;
     }
 
-
     public static PhotoDetailResponse getPhotoDetailResponse(){
         PhotoDetailResponse photoDetailResponse = new PhotoDetailResponse();
 
@@ -74,5 +77,20 @@ public class MockResponse {
 
         photoDetailResponse.setPhoto(photoDetail);
         return photoDetailResponse;
+    }
+
+    public static PersonResponse getPersonResponse(){
+        PersonResponse personResponse = new PersonResponse();
+
+        Person person = new Person();
+        person.setNsid(Constant.DEFAULT_ID);
+        person.setUsername(new Username(Constant.DEFAULT_NAME));
+        person.setRealname(new Realname(Constant.DEFAULT_NAME));
+        person.setDescription(new Description(Constant.DEFAULT_DESCRIPTION));
+        person.setId(Constant.DEFAULT_ID);
+
+        personResponse.setPerson(person);
+
+        return personResponse;
     }
 }

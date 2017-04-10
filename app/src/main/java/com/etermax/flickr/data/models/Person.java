@@ -32,6 +32,9 @@ public class Person {
         this.photos = photos;
     }
 
+    public Person() {
+    }
+
     public String getId() {
         return id;
     }
