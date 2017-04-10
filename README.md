@@ -1,6 +1,6 @@
 # Flickr
 
-Flickr is a test made for the company etermax in order to be able to show my skills as an android developer.
+This application shows the use of the Flickr API without the need to use its SDK.
 
 # Run Project!
 
